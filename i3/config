@@ -475,7 +475,7 @@ exec --no-startup-id volumeicon
 #exec --no-startup-id conky -c ~/.config/i3/system-overview
 
 #feh sets wallpaper
-exec --no-startup-id feh --bg-fill ~/Pictures/wallpaper1.jpg
+exec --no-startup-id feh --bg-fill ~/Pictures/wall2.jpg
 
 #Polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh --blocks
@@ -808,7 +808,7 @@ popup_during_fullscreen smart
 # want it
 
 
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 0
 gaps inner 10
 gaps outer 0
 #smart_gaps on
@@ -869,9 +869,11 @@ mode "$mode_gaps_outer" {
 #####################################################################################################################
 
 #if you want transparency on non-focused windows, ...
-#exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
 
-bindsym control+mod1+o exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
+exec killall picom && 
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
+
+# bindsym control+mod1+o exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
 
 #####################################################################################################################
 #####################################################################################################################
@@ -965,16 +967,16 @@ bindsym control+mod1+o exec --no-startup-id ~/.config/i3/scripts/picom-toggle.sh
 
     # Window color settings
     # class                 border  backgr. text    indicator
-    client.focused          #6790EB #6790EB #e5e5e5 #6790EB
+    # client.focused          #6790EB #6790EB #e5e5e5 #6790EB
     # client.unfocused        #222222 #222222 #aaaaaa #222222
-    client.unfocused          #6790EB #6790EB #e5e5e5 #6790EB  
+    # client.unfocused          #6790EB #6790EB #e5e5e5 #6790EB  
     # client.focused_inactive #222222 #222222 #a9a9a9 #222222
-    client.focused_inactive          #6790EB #6790EB #e5e5e5 #6790EB
+    # client.focused_inactive          #6790EB #6790EB #e5e5e5 #6790EB
     # client.placeholder      #222222 #222222 #aaaaaa #222222
-    client.placeholder          #6790EB #6790EB #e5e5e5 #6790EB
-    client.urgent           #d42121 #d42121 #f7f7f7 #d42121
+    # client.placeholder          #6790EB #6790EB #e5e5e5 #6790EB
+    # client.urgent           #d42121 #d42121 #f7f7f7 #d42121
 
-    client.background       #242424
+    # client.background       #242424
 
     ##STOP THEMING WM
 
