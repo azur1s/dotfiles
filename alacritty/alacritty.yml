@@ -111,7 +111,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: JetBrainsMono Nerd Font
+    family: Iosevka
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -123,7 +123,7 @@ font:
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
 
-    family: JetBrainsMono Nerd Font
+    family: Iosevka
     # value specified for the normal font.
 
     # The `style` can be specified to pick a specific face.
@@ -135,7 +135,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: JetBrainsMono Nerd Font
+    family: Iosevka
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -146,7 +146,7 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: JetBrainsMono Nerd Font
+    family: Iosevka
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
@@ -158,7 +158,7 @@ font:
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
   offset:
-    x: 0
+    x: -1
     y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
@@ -179,63 +179,75 @@ font:
 
 # Colors
 colors:
-# Copyright (c) 2017-present Arctic Ice Studio <development@arcticicestudio.com>
-# Copyright (c) 2017-present Sven Greb <code@svengreb.de>
-
-# Project:    Nord Alacritty
-# Version:    0.1.0
-# Repository: https://github.com/arcticicestudio/nord-alacritty
-# License:    MIT
-# References:
-#   https://github.com/alacritty/alacritty
-
   primary:
-    background: '#2e3440'
-    foreground: '#d8dee9'
-    dim_foreground: '#a5abb6'
+    # for hard contrast: #1b1b23
+    # for neutral contrast: #20202a
+    # for soft contrast: #2c2e3e
+    background:        &aquarium_bg '#20202a'
+    foreground:        '#c8cedc'
+    bright_foreground: '#a0a8b6'
+    dim_foreground:    '#4c5664'
+
   cursor:
-    text: '#2e3440'
-    cursor: '#d8dee9'
+    style: Underline
+    text:   CellBackground
+    cursor: '#ebe3b9'
+
+
   vi_mode_cursor:
-    text: '#2e3440'
-    cursor: '#d8dee9'
-  selection:
-    text: CellForeground
-    background: '#4c566a'
+    text:   CellBackground
+    cursor: '#ebe3b9'
+
   search:
     matches:
-      foreground: CellBackground
-      background: '#88c0d0'
+      foreground: '#000000'
+      background: '#ffffff'
+
+    focused_match:
+     foreground: CellBackground
+     background: CellForeground
+
     bar:
-      background: '#434c5e'
-      foreground: '#d8dee9'
-  normal:
-    black: '#3b4252'
-    red: '#bf616a'
-    green: '#a3be8c'
-    yellow: '#ebcb8b'
-    blue: '#81a1c1'
-    magenta: '#b48ead'
-    cyan: '#88c0d0'
-    white: '#e5e9f0'
+      background: None
+      foreground: None
+
+  line_indicator:
+    foreground: None
+    background: None
+
+  selection:
+    text:       CellBackground
+    background: CellForeground
+
   bright:
-    black: '#4c566a'
-    red: '#bf616a'
-    green: '#a3be8c'
-    yellow: '#ebcb8b'
-    blue: '#81a1c1'
-    magenta: '#b48ead'
-    cyan: '#8fbcbb'
-    white: '#eceff4'
+    black:   '#3b3b4d'
+    red:     '#ebb9b9'
+    green:   '#caf6bb'
+    yellow:  '#ebe3b9'
+    blue:    '#cddbf9'
+    magenta: '#f6bbe7'
+    cyan:    '#b8dceb'
+    white:   '#c8cedc'
+
+  normal:
+    black:   '#3b3b4d'
+    red:     '#ebb9b9'
+    green:   '#caf6bb'
+    yellow:  '#ebe3b9'
+    blue:    '#cddbf9'
+    magenta: '#f6bbe7'
+    cyan:    '#b8dceb'
+    white:   '#c8cedc'  
+
   dim:
-    black: '#373e4d'
-    red: '#94545d'
-    green: '#809575'
-    yellow: '#b29e75'
-    blue: '#68809a'
-    magenta: '#8c738c'
-    cyan: '#6d96a5'
-    white: '#aeb3bb'
+    black:   '#32302f'
+    red:     '#cc9b9d'
+    green:   '#a3ccad'
+    yellow:  '#d1ba97'
+    blue:    '#076678'
+    magenta: '#c497b3'
+    cyan:    '#86bfbc'
+    white:   '#928374'
 
   # Indexed Colors
   #
@@ -292,7 +304,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.9
+background_opacity: 1
 
 #selection:
   # This string contains all characters that are used as separators for
@@ -311,7 +323,7 @@ cursor:
     #   - ▇ Block
     #   - _ Underline
     #   - | Beam
-    shape: Beam
+    shape: Block
 
     # Cursor blinking state
     #

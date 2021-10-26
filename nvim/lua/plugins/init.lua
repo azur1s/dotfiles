@@ -45,6 +45,12 @@ return packer.startup(function()
    }
 
    use {
+      'williamboman/nvim-lsp-installer',
+   }
+
+   use 'Mofiqul/dracula.nvim'
+
+   use {
       "nvim-lua/plenary.nvim",
    }
 
