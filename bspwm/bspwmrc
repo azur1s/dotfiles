@@ -1,0 +1,30 @@
+#! /bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+sxhkd -m -1 &
+nm-applet &
+$HOME/.config/polybar/launch.sh
+feh --bg-fill ~/Pictures/satellite.png
+# feh --bg-tile ~/Pictures/tile_green_tok.png
+picom --vsync --config ~/.config/picom.conf &
+
+bspc monitor -d I II III IV V
+
+bspc config border_width        0
+bspc config window_gap          5
+
+bspc config active_border_color '#1a1b26'
+bspc config normal_border_color '#1a1b26'
+bspc config focused_border_color '#449dab'
+
+bspc config split_ratio          0.5
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a firefox desktop='^5'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+

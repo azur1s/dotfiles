@@ -1,3 +1,68 @@
+schemes:
+  # Tokyo Night theme, based on both:
+  #   https://github.com/ghifarit53/tokyonight-vim
+  #   https://github.com/enkia/tokyo-night-vscode-theme
+  tokyo-night: &tokyo-night
+    # Default colors
+    primary:
+      background: '0x1a1b26'
+      foreground: '0xa9b1d6'
+
+    # Normal colors
+    normal:
+      black:   '0x32344a'
+      red:     '0xf7768e'
+      green:   '0x9ece6a'
+      yellow:  '0xe0af68'
+      blue:    '0x7aa2f7'
+      magenta: '0xad8ee6'
+      cyan:    '0x449dab'
+      white:   '0x787c99'
+
+    # Bright colors
+    bright:
+      black:   '0x444b6a'
+      red:     '0xff7a93'
+      green:   '0xb9f27c'
+      yellow:  '0xff9e64'
+      blue:    '0x7da6ff'
+      magenta: '0xbb9af7'
+      cyan:    '0x0db9d7'
+      white:   '0xacb0d0'
+
+  base16-default-dark: &base16-default-dark
+    # Default colors
+    primary:
+      background: '0x181818'
+      foreground: '0xd8d8d8'
+
+    # Colors the cursor will use if `custom_cursor_colors` is true
+    cursor:
+      text: '0x181818'
+      cursor: '0xd8d8d8'
+
+    # Normal colors
+    normal:
+      black:   '0x181818'
+      red:     '0xab4642'
+      green:   '0xa1b56c'
+      yellow:  '0xf7ca88'
+      blue:    '0x7cafc2'
+      magenta: '0xba8baf'
+      cyan:    '0x86c1b9'
+      white:   '0xd8d8d8'
+
+    # Bright colors
+    bright:
+      black:   '0x585858'
+      red:     '0xdc9656'
+      green:   '0x282828'
+      yellow:  '0x383838'
+      blue:    '0xb8b8b8'
+      magenta: '0xe8e8e8'
+      cyan:    '0xa16946'
+      white:   '0xf8f8f8'
+
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 # Import additional configuration files
@@ -152,21 +217,21 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 9
+  size: 12
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
   offset:
-    x: -1
+    x: 0
     y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the
   # right, increasing `y` moves the glyph upward.
-  #glyph_offset:
-  #  x: 0
-  #  y: 0
+  glyph_offset:
+    x: 0
+    y: 0
 
   # Thin stroke font rendering (macOS only)
   #
@@ -178,76 +243,7 @@ font:
 #draw_bold_text_with_bright_colors: false
 
 # Colors
-colors:
-  primary:
-    # for hard contrast: #1b1b23
-    # for neutral contrast: #20202a
-    # for soft contrast: #2c2e3e
-    background:        &aquarium_bg '#20202a'
-    foreground:        '#c8cedc'
-    bright_foreground: '#a0a8b6'
-    dim_foreground:    '#4c5664'
-
-  cursor:
-    style: Underline
-    text:   CellBackground
-    cursor: '#ebe3b9'
-
-
-  vi_mode_cursor:
-    text:   CellBackground
-    cursor: '#ebe3b9'
-
-  search:
-    matches:
-      foreground: '#000000'
-      background: '#ffffff'
-
-    focused_match:
-     foreground: CellBackground
-     background: CellForeground
-
-    bar:
-      background: None
-      foreground: None
-
-  line_indicator:
-    foreground: None
-    background: None
-
-  selection:
-    text:       CellBackground
-    background: CellForeground
-
-  bright:
-    black:   '#3b3b4d'
-    red:     '#ebb9b9'
-    green:   '#caf6bb'
-    yellow:  '#ebe3b9'
-    blue:    '#cddbf9'
-    magenta: '#f6bbe7'
-    cyan:    '#b8dceb'
-    white:   '#c8cedc'
-
-  normal:
-    black:   '#3b3b4d'
-    red:     '#ebb9b9'
-    green:   '#caf6bb'
-    yellow:  '#ebe3b9'
-    blue:    '#cddbf9'
-    magenta: '#f6bbe7'
-    cyan:    '#b8dceb'
-    white:   '#c8cedc'  
-
-  dim:
-    black:   '#32302f'
-    red:     '#cc9b9d'
-    green:   '#a3ccad'
-    yellow:  '#d1ba97'
-    blue:    '#076678'
-    magenta: '#c497b3'
-    cyan:    '#86bfbc'
-    white:   '#928374'
+colors: *tokyo-night
 
   # Indexed Colors
   #
@@ -257,7 +253,7 @@ colors:
   # Example:
   #   `- { index: 16, color: '#ff00ff' }`
   
-  indexed_colors: []
+  # indexed_colors: []
 
 # Bell
 #
@@ -266,7 +262,7 @@ colors:
   # Visual Bell Animation
   #
   # Animation effect for flashing the screen when the visual bell is rung.
-  #
+  
   # Values for `animation`:
   #   - Ease
   #   - EaseOut
@@ -304,7 +300,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1
+background_opacity: 1.0
 
 #selection:
   # This string contains all characters that are used as separators for

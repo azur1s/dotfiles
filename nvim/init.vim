@@ -1,69 +1,75 @@
+" --- Plugins
 call plug#begin()
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+" Plug 'jiangmiao/auto-pairs'
 
 " Cosmetics plugins
-Plug 'mhinz/vim-startify'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'nvim-lualine/lualine.nvim'
 Plug 'andweeb/presence.nvim'
 Plug 'github/copilot.vim'
 Plug 'wakatime/vim-wakatime'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'glepnir/dashboard-nvim'
+
+Plug 'azur1s/bobbylisp.vim'
 
 call plug#end()
+            
+let mapleader = "\<Space>"            
 
-set nu rnu
+" --- Vim Settings
+set number
 set completeopt=menu,menuone,noselect
 set shortmess+=c
+set mouse=a
+set cursorline
 
-" fzf
-nnoremap f :Files<CR>
+" Telescope
+nnoremap f <cmd>Telescope find_files<CR>
 
-" Toggle copilot
+" Copilot toggle
 nnoremap 3 :Copilot enable<CR>
-nnoremap 4 :Copilot disable<CR>  
+nnoremap 4 :Copilot disable<CR>
 
-" Tabsize
 set tabstop=4
 set shiftwidth=4
 set expandtab
 
-set nowrap
+" Move lines up and down
+nnoremap <C-Up> :m -2<CR>
+nnoremap <C-Down> :m +2<CR>
 
+set nowrap
 syntax enable
 filetype plugin indent on
 
+" Colorschemes
 let g:tokyonight_style = "night"
 colorscheme tokyonight
 
+" Dashboard
+let g:dashboard_default_executive = "telescope"
+nmap <Leader>ss :<C-u>SessionSave<CR>
+nmap <Leader>sl :<C-u>SessionLoad<CR>
+nnoremap <silent> <Leader>fh :DashboardFindHistory<CR>
+nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
+nnoremap <silent> <Leader>tc :DashboardChangeColorscheme<CR>
+nnoremap <silent> <Leader>fa :DashboardFindWord<CR>
+nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
+nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
+
+let g:dashboard_preview_command = "cat"
+let g:dashboard_preview_file = "~/.config/nvim/icon.cat"
+let g:dashboard_preview_file_height = 5
+let g:dashboard_preview_file_width = 30
+
+" --- Lua stuff
+
 lua << END
--- lualine
-require'lualine'.setup {
-    options = { section_separators = '', component_separators = '' },
-    sections = {
-        lualine_a = {'mode'},
-        lualine_b = {'filename'},
-        lualine_c = {'location', 'progress'},
-        lualine_x = {'fileformat', 'filetype'},
-        lualine_y = {'filesize'},
-        lualine_z = {'hostname'}
-    }
-}
 END
-
-" startify
-
-let g:startify_custom_header = [
-    \ '            /\         ',
-    \ '           /  \        ',
-    \ '          /\   \       ',
-    \ '         /      \      ',
-    \ '        /   ,,   \     ',
-    \ '       /   |  |  -\    ',
-    \ '      /_-``    ``-_\   ',
-\ ]
 
