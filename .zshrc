@@ -20,8 +20,8 @@ plugins=(
 
 export HISTCONTROL=ignoreboth:erasedups
 
-export EDITOR='nvim'
-export VISUAL='nvim'
+export EDITOR='code'
+export VISUAL='code'
 
 if [ -d "$HOME/.bin" ] ;
   then PATH="$HOME/.bin:$PATH"
@@ -33,15 +33,11 @@ fi
 
 autoload -U compinit && compinit
 
-alias nvim="nvim -c 'Copilot disable'"
+# alias nvim="nvim -c 'Copilot disable'"
 
 alias ls="exa --icons --color-scale"
-alias fet.sh="~/Documents/Code/sh/fet.sh"
-alias q="~/Documents/Code/sh/q.sh"
 alias zshrc="source ~/.zshrc"
 alias gtime="/usr/bin/time -p"
-
-alias emacs="emacs &"
 
 alias cdc="cd ~/Documents/Code/" 
 alias cdconf="cd ~/.config/"
@@ -53,6 +49,12 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=fg+:#c0caf5,bg+:#1a1b26,hl+:#7dcfff
 --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff 
 --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a'
+
+# export ERL_AFLAGs="-kernel shell_history enabled"
+# export PATH=/home/azur/.nimble/bin:$PATH
+
+export DENO_INSTALL="/home/azur/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
 
 # source ~/.config/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

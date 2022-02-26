@@ -1,7 +1,9 @@
-format = "$directory λ "
+format = "$directory "
+add_newline = true
+
 
 [directory]
-format = "[$path](green)[$read_only](red)"
+format = "[$path](dimmed)[$read_only](red)"
 read_only = " "
 truncate_to_repo = true
 truncation_length = 1
