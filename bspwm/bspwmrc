@@ -10,13 +10,13 @@ feh --bg-fill ~/Pictures/akiakane01.png
 # hsetroot -solid "#16161f"
 picom --vsync --config ~/.config/picom.conf &
 
-bspc monitor -d I II III IV V
+bspc monitor -d Code Chrome Discord Github Terminal
 
 bspc config border_width        3
 bspc config window_gap          5
 
-bspc config active_border_color '#24283b'
-bspc config normal_border_color '#24283b'
+bspc config active_border_color  '#24283b'
+bspc config normal_border_color  '#24283b'
 bspc config focused_border_color '#a9b1d6'
 
 bspc config split_ratio          0.5

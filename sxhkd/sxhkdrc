@@ -6,6 +6,10 @@
 super + Return
 	alacritty
 
+# rotate current window
+super + w
+    bspc node @parent -R 90
+
 # program launcher
 super + shift + d
 	rofi -show run -theme Monokai

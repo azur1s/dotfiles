@@ -1,10 +1,9 @@
-format = "$directory "
+format = " $directory[ ❯ ](bright-purple)"
 add_newline = true
 
-
 [directory]
-format = "[$path](dimmed)[$read_only](red)"
-read_only = " "
+format = "[$path](bright-blue)[$read_only](fg:red)"
+read_only = " R"
 truncate_to_repo = true
 truncation_length = 1
 

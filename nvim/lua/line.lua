@@ -1,4 +1,4 @@
-local lualine = require("lualine")
+local lualine = require "lualine"
 
 local config = {
     options = {
@@ -8,7 +8,11 @@ local config = {
         section_separators = "",
     },
     sections = {
-        lualine_a = {"mode"},
+        lualine_a = {{
+            "mode",
+            -- separator = { left = '', right = '' },
+            separator = { left = '', right = '' },
+        }},
         lualine_b = {},
         lualine_c = {},
         lualine_x = {},

@@ -1,40 +1,36 @@
-require('packer').startup(function()
+require("packer").startup(function()
+    use "neoclide/coc.nvim"
+    -- coc-rust-analyzer
+
     -- Use packer
-    use 'wbthomason/packer.nvim'
+    use "wbthomason/packer.nvim"
 
     -- Nvim tree
     use {
-        'kyazdani42/nvim-tree.lua',
-        requires = 'kyazdani42/nvim-web-devicons',
-        config = function() require'nvim-tree'.setup {} end
+        "kyazdani42/nvim-tree.lua",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function() require"nvim-tree".setup {} end
     }
 
-    -- Coc (rust-analyzer)
-    use {
-        'neoclide/coc.nvim',
-        branch = 'release'
-    }
-
-    -- Hazure language
-    use "azur1s/hazure.vim"
+    use "junegunn/fzf.vim"
 
     -- Bufferline (or tabs)
     use {
-        'akinsho/bufferline.nvim',
-        requires = 'kyazdani42/nvim-web-devicons'
+        "akinsho/bufferline.nvim",
+        requires = "kyazdani42/nvim-web-devicons"
     }
 
     -- Statusline
     use {
-        'nvim-lualine/lualine.nvim',
-        requires = 'kyazdani42/nvim-web-devicons'
+        "nvim-lualine/lualine.nvim",
+        requires = "kyazdani42/nvim-web-devicons"
     }
 
     -- Discord Rich Presence
-    use 'andweeb/presence.nvim'
+    use "andweeb/presence.nvim"
 
     -- Color scheme
-    use 'folke/tokyonight.nvim'
+    use "folke/tokyonight.nvim"
 end)
 
 -- Colorscheme config

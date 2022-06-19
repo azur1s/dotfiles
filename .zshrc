@@ -1,27 +1,27 @@
 export ZSH=/usr/share/oh-my-zsh/
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export HISTFILE=~/.zsh_history
-export HISTSIZE=1000
-export SAVEHIST=1000
+export HISTSIZE=1000000
+export HISTCONTROL=ignoreboth:erasedups
+export SAVEHIST=1000000
 
-plugins=(
-    git
-    archlinux
-    cargo
-    rust
-    zsh-syntax-highlighting
-    zsh-completions
-    zsh-autosuggestions
-  )
+PROMPT_EOL_MARK=''
 
-# source $ZSH/oh-my-zsh.sh
+export DENO_INSTALL="/home/azur/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+# opam
+[[ ! -r /home/azur/.opam/opam-init/init.zsh ]] || source /home/azur/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+# ghc-env
+[ -f "/home/azur/.ghcup/env" ] && source "/home/azur/.ghcup/env"
 
 [[ $- != *i* ]] && return
 
-export HISTCONTROL=ignoreboth:erasedups
-
 export EDITOR='code'
 export VISUAL='code'
+
+unsetopt BEEP
+unsetopt LIST_BEEP
 
 if [ -d "$HOME/.bin" ] ;
   then PATH="$HOME/.bin:$PATH"
@@ -31,7 +31,20 @@ if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
 fi
 
+# -- Plugins ---
+
 autoload -U compinit && compinit
+plugins=(
+    git
+    archlinux
+    cargo
+    rust
+    zsh-syntax-highlighting
+    zsh-completions
+    zsh-autosuggestions
+)
+
+# --- Bindings ---
 
 # alias nvim="nvim -c 'Copilot disable'"
 
@@ -42,21 +55,11 @@ alias gtime="/usr/bin/time -p"
 alias cdc="cd ~/Documents/Code/" 
 alias cdconf="cd ~/.config/"
 
-PROMPT_EOL_MARK=''
+alias hack="unimatrix -s 90 -c magenta"
 
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS' 
---color=fg:#c0caf5,bg:#1a1b26,hl:#bb9af7
---color=fg+:#c0caf5,bg+:#1a1b26,hl+:#7dcfff
---color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff 
---color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a'
+bindkey '^H' backward-kill-word
+bindkey '5~' kill-word
 
-# export ERL_AFLAGs="-kernel shell_history enabled"
-# export PATH=/home/azur/.nimble/bin:$PATH
 
-export DENO_INSTALL="/home/azur/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-
-# source ~/.config/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 eval "$(starship init zsh)"
-[ -f "/home/azur/.ghcup/env" ] && source "/home/azur/.ghcup/env" # ghcup-env
