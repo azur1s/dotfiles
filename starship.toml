@@ -1,17 +1,8 @@
-format = " $directory[ ❯ ](bright-purple)"
-add_newline = true
+format = "$directory "
+add_newline = false
 
 [directory]
-format = "[$path](bright-blue)[$read_only](fg:red)"
+format = "[$path](fg:blue)[$read_only](fg:red)"
 read_only = " R"
 truncate_to_repo = true
 truncation_length = 1
-
-[time]
-disabled = true
-
-[hostname]
-disabled = true
-
-[battery]
-disabled = true

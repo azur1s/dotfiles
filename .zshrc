@@ -1,65 +1,28 @@
-export ZSH=/usr/share/oh-my-zsh/
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export HISTFILE=~/.zsh_history
-export HISTSIZE=1000000
-export HISTCONTROL=ignoreboth:erasedups
-export SAVEHIST=1000000
+export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
 
-PROMPT_EOL_MARK=''
+# - History
+HISTFILE=~/.zsh.histfile
+HISTSIZE=1000
+SAVEHIST=10000
 
-export DENO_INSTALL="/home/azur/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
+# - Beep
+unsetopt beep
+unsetopt list_beep
 
-# opam
-[[ ! -r /home/azur/.opam/opam-init/init.zsh ]] || source /home/azur/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-# ghc-env
-[ -f "/home/azur/.ghcup/env" ] && source "/home/azur/.ghcup/env"
+# - Alias & bindings
+bindkey -e
+bindkey "^H" backward-kill-word
+bindkey "5~" kill-word
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
-[[ $- != *i* ]] && return
-
-export EDITOR='code'
-export VISUAL='code'
-
-unsetopt BEEP
-unsetopt LIST_BEEP
-
-if [ -d "$HOME/.bin" ] ;
-  then PATH="$HOME/.bin:$PATH"
-fi
-
-if [ -d "$HOME/.local/bin" ] ;
-  then PATH="$HOME/.local/bin:$PATH"
-fi
-
-# -- Plugins ---
-
-autoload -U compinit && compinit
-plugins=(
-    git
-    archlinux
-    cargo
-    rust
-    zsh-syntax-highlighting
-    zsh-completions
-    zsh-autosuggestions
-)
-
-# --- Bindings ---
-
-# alias nvim="nvim -c 'Copilot disable'"
-
-alias ls="exa --icons --color-scale"
-alias zshrc="source ~/.zshrc"
-alias gtime="/usr/bin/time -p"
-
-alias cdc="cd ~/Documents/Code/" 
+alias cdc="cd ~/Documents/Code/"
 alias cdconf="cd ~/.config/"
 
-alias hack="unimatrix -s 90 -c magenta"
+alias ls="exa -l --no-user"
 
-bindkey '^H' backward-kill-word
-bindkey '5~' kill-word
-
-
+# - Misc
+export PROMPT_EOL_MARK=""
+autoload -Uz compinit && compinit
 
 eval "$(starship init zsh)"

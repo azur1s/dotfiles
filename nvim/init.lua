@@ -1,5 +1,5 @@
+require "base"
 require "pack"
-require "line"
 
-require "vimsetting"
-require "keybind"
+require "binds"
+
