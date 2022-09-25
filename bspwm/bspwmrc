@@ -4,6 +4,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 sxhkd -m -1 &
 pulseaudio &
 nm-applet &
+picom &
 
 hsetroot -solid "#3b3b4d"
 
