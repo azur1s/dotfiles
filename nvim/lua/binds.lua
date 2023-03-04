@@ -1,31 +1,25 @@
-local k = vim.keymap
+local builtin = require('telescope.builtin')
 
--- Reload config
-k.set('n', '<C-r>', ':luafile %<CR>')
+vim.g.mapleader = " ";
 
--- Don't copy with x
-k.set('n', 'x', '"_x"')
+vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv")
 
--- Delete a word
-k.set('n', 'dw', 'vb"_d')
+vim.keymap.set("n", "fnw", vim.cmd.Ex)
+vim.keymap.set("n", "fne", builtin.find_files, {})
+vim.keymap.set("n", "fnu", builtin.git_files, {})
+vim.keymap.set("n", "fnp", function()
+    builtin.grep_string({ search = vim.fn.input("Grep: ") })
+end)
 
--- Select all
-k.set('n', '<C-a>', 'gg<S-v>G')
+local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
 
--- Tabs
-k.set('n', 'tu', ':split<Return><C-w>w', { silent = true })  -- Horizontal split
-k.set('n', 'tp', ':vsplit<Return><C-w>w', { silent = true }) -- Vertical split
+vim.keymap.set("n", "thf", mark.add_file)
+vim.keymap.set("n", "thu", mark.rm_file)
+vim.keymap.set("n", "thp", mark.clear_all)
+vim.keymap.set("n", "(", ui.toggle_quick_menu)
 
-k.set('n', 'tn', '<C-w>w') -- Switch to next tab
-k.set('', 'tq', '<C-w>c')  -- Close tab
-
--- Telescope
-k.set('n', 'fb', ':Telescope file_browser<Return>',
-    { noremap = true, silent = true })
-k.set('n', 'ff', ':Telescope find_files<Return>',
-    { noremap = true, silent = true })
-
--- Coc
-k.set('i', '<C-e>', 'coc#pum#visible() ? coc#pum#confirm() : "<C-e>"',
-    { expr = true, noremap = true })
-k.set('n', 'cf', '<Plug>(coc-codeaction)', { noremap = false })
+vim.keymap.set("n", "thl", function() ui.nav_file(1) end)
+vim.keymap.set("n", "thn", function() ui.nav_next() end)
+vim.keymap.set("n", "the", function() ui.nav_prev(4) end)

@@ -1,109 +1,70 @@
-local status, packer = pcall(require, 'packer')
-if (not status) then
-    print 'Packer is not installed :('
-    return
-end
-
 vim.cmd [[packadd packer.nvim]]
-packer.startup(function(use)
-    use 'wbthomason/packer.nvim'
 
-    -- Colorscheme
-    use 'rainglow/vim'
+require("packer").startup(function(use)
+    use "wbthomason/packer.nvim"
 
-    -- Statusline
-    use 'nvim-lualine/lualine.nvim'
+    use "nvim-lua/plenary.nvim"
 
-    -- Multiline editing (VSCode like)
     use {
-        'mg979/vim-visual-multi',
-        branch = 'master'
+        "nvim-telescope/telescope.nvim", tag = "0.1.1",
+        requires = { { "nvim-lua/plenary.nvim" } }
     }
 
-    -- Conquer of Completion
     use {
-        'neoclide/coc.nvim',
-        branch = 'release'
+        "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" }
     }
 
-    -- Parinfer (for lisps)
-    use 'gpanders/nvim-parinfer'
-
-    -- Haskell
-    use 'neovimhaskell/haskell-vim'
-
-    -- Github copilot
-    use 'github/copilot.vim'
-
-    -- Telescope file finder
     use {
-        'nvim-telescope/telescope.nvim',
-        requires = { {'nvim-lua/plenary.nvim'} }
+        "VonHeikemen/lsp-zero.nvim",
+        branch = "v1.x",
+        requires = {
+            -- LSP Support
+            {"neovim/nvim-lspconfig"},             -- Required
+            {"williamboman/mason.nvim"},           -- Optional
+            {"williamboman/mason-lspconfig.nvim"}, -- Optional
+
+            -- Autocompletion
+            {"hrsh7th/nvim-cmp"},         -- Required
+            {"hrsh7th/cmp-nvim-lsp"},     -- Required
+            {"hrsh7th/cmp-buffer"},       -- Optional
+            {"hrsh7th/cmp-path"},         -- Optional
+            {"saadparwaiz1/cmp_luasnip"}, -- Optional
+            {"hrsh7th/cmp-nvim-lua"},     -- Optional
+
+            -- Snippets
+            {"L3MON4D3/LuaSnip"},             -- Required
+            {"rafamadriz/friendly-snippets"}, -- Optional
+        }
     }
-    use 'nvim-telescope/telescope-file-browser.nvim'
 
-    -- Useful movement related plugins
-    use 'tpope/vim-repeat'
-    use 'tpope/vim-surround'
-    use 'justinmk/vim-sneak'
+    use "ThePrimeagen/harpoon"
 
-    -- Discord RPC
-    use 'andweeb/presence.nvim'
+    use "nyoom-engineering/oxocarbon.nvim"
 
+    use "github/copilot.vim"
 end)
 
-require 'telescope'.setup {
-    defaults = {
-        file_ignore_patterns = {
-            "node_modules/*",
-            "dist--newstyle",
-        },
-        prompt_prefix = "  ",
-        selection_caret = "  ",
-        entry_prefix = "  ",
-        layout_strategy = "flex",
-        layout_config = {
-            horizontal = {
-            preview_width = 0.6,
-            },
-        },
-        border = {},
-        borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
-    }
-}
-require 'telescope'.load_extension 'file_browser'
+require"nvim-treesitter.configs".setup {
+    ensure_installed = {
+        "help",
+        "vim", "lua",
+        "c", "rust", "javascript", "typescript", "java",
+    },
 
-local t = { a = { bg = '#00000000' }, c = { bg = '#00000000' } }
-local function time() return os.date '%H:%M' end
-require 'lualine'.setup {
-    options = {
-        theme = {
-            normal   = t,
-            insert   = t,
-            visual   = t,
-            replace  = t,
-            command  = t,
-            inactive = t,
-        },
-        component_separators = ' ',
-    },
-    sections = {
-        lualine_a = { 'mode', 'filename', 'location', 'progress', 'filetype' },
-        lualine_b = { },
-        lualine_c = { },
-        lualine_x = { },
-        lualine_y = { },
-        lualine_z = { time },
-    },
-    inactive_sections = {
-        lualine_a = { 'filename', 'location', 'progress', 'filetype' },
-        lualine_b = { },
-        lualine_c = { },
-        lualine_x = { },
-        lualine_y = { },
-        lualine_z = { },
-    },
-    tabline = {},
-    extensions = { 'fugitive' }
-}
+    sync_install = false,
+    auto_install = true,
 
+    highlight = {
+        enable = true,
+
+        disable = function(lang, buf)
+            local max_filesize = 100 * 1024 -- 100 KB
+            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+            if ok and stats and stats.size > max_filesize then
+                return true
+            end
+        end,
+
+        additional_vim_regex_highlighting = false,
+    },
+}
